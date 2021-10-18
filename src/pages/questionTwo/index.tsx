@@ -1,13 +1,12 @@
-import React from 'react';
+import React from "react";
 import ErrorBoundary from "../../components/errorBoundary";
-import QuestionTwo from './questionTwo'
-import Question from './question'
+import QuestionTwo from "./questionTwo";
+import Question from "./question";
 
-const QuestionTwoWrapper = () =>(
-	<ErrorBoundary question={Question}>
-		<QuestionTwo />
-	</ErrorBoundary>
+const QuestionTwoWrapper = (): JSX.Element => (
+  <ErrorBoundary question={Question}>
+    <QuestionTwo />
+  </ErrorBoundary>
 );
 
-export default QuestionTwoWrapper
-
+export default QuestionTwoWrapper;

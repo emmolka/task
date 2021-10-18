@@ -1,13 +1,15 @@
 import axios from "axios";
 
-async function getCardDetails (){
-	let newPromise = new Promise((resolve, reject)=>{
-		axios.get('http://localhost:3001/example').then((result)=>{
-			const {title, body, imgSrc} = result.data;
-			resolve(title, body, imgSrc)
-		})
-	})
-	return newPromise
+export interface Dog {
+  imgSrc: string;
+  title: string;
+  body: string;
+  id: number;
 }
 
-export { getCardDetails }
+const getCardDetails = async (): Promise<Dog | undefined> => {
+  const newPromise = await axios.get<Dog>("http://localhost:3001/example");
+  return newPromise.data;
+};
+
+export { getCardDetails };
