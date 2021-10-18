@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import { CardMedia } from "@material-ui/core";
 import Solution from "./images/solution.png";
 
-const question = () => {
+const question = (): JSX.Element => {
   return (
     <div>
       <Typography variant="h4" gutterBottom>

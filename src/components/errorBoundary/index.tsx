@@ -1,47 +1,51 @@
-import React from "react";
+import React, { ErrorInfo, ReactElement } from "react";
+import { Wrapper, Question, ErrorWrapper, ErrorText } from "./style";
 
-class ErrorBoundary extends React.Component {
-  constructor(props) {
+const defaultQuestion = (): JSX.Element => {
+  return <div>Please add a question to the test</div>;
+};
+
+interface ErrorState {
+  error: Error | null;
+  errorInfo: ErrorInfo | null;
+}
+
+interface ErrorProps {
+  question?: () => JSX.Element;
+  children: ReactElement;
+}
+
+class ErrorBoundary extends React.Component<ErrorProps, ErrorState> {
+  constructor(props: ErrorState & ErrorProps) {
     super(props);
     this.state = { error: null, errorInfo: null };
   }
-  componentDidCatch(error, errorInfo) {
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     this.setState({
       error: error,
       errorInfo: errorInfo,
     });
   }
-  render() {
+
+  render(): JSX.Element {
     if (this.state.errorInfo) {
       // Error path
       return (
-        <div style={{ display: "flex", flexDirection: "row", flex: 1 }}>
-          <div style={{ flex: 1, margin: 24, textAlign: "left" }}>
-            {this.props.question()}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              flex: 1,
-            }}
-          >
+        <Wrapper>
+          <Question>
+            {(this.props.question && this.props.question()) ||
+              defaultQuestion()}
+          </Question>
+          <ErrorWrapper>
             <h2>Something went wrong.</h2>
-            <div
-              style={{
-                whiteSpace: "pre-wrap",
-                maxWidth: 400,
-                textAlign: "left",
-                alignSelf: "center",
-              }}
-            >
+            <ErrorText>
               {this.state.error && this.state.error.toString()}
               <br />
               {this.state.errorInfo.componentStack}
-            </div>
-          </div>
-        </div>
+            </ErrorText>
+          </ErrorWrapper>
+        </Wrapper>
       );
     }
 
@@ -49,10 +53,4 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-const defaultQuestion = () => {
-  return <div>Please add a question to the test</div>;
-};
-ErrorBoundary.defaultProps = {
-  question: defaultQuestion,
-};
 export default ErrorBoundary;
