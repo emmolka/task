@@ -1,37 +1,34 @@
-import React from 'react'
+import React from "react";
 import Typography from "@material-ui/core/Typography";
-import {CardMedia} from "@material-ui/core";
+import { CardMedia } from "@material-ui/core";
 import kobayashiMaru from "./images/kobayashiMaru.jpg";
 
-const question = ()=>{
-	return (
-		<div>
-			<Typography variant="h4" gutterBottom>
-				Question Four
-			</Typography>
-			<Typography variant="h5" gutterBottom>
-				Kobayashi Maru
-			</Typography>
-			<Typography variant="body1" gutterBottom>
-				Kirk solves the unsolvable by changing the rules, this is your chance to show us how you would solve your own Kobayashi Maru.
-			</Typography>
-			<Typography variant="body1" gutterBottom>
-				Your task if you choose to accept it, is to write your own test and create a challenge for us to solve!
-			</Typography>
-			<Typography variant="body1" gutterBottom>
-				Ideally it would be written as a bug, but the complexity and requirements are up to you. So 'show us what you got'!
-			</Typography>
-			<CardMedia
-				image={kobayashiMaru}
-				style={{
-					width: '100%',
-					height: 500,
-					backgroundSize: 'contain',
-				}}
-				title="The Solution"
-			/>
-		</div>
-	)
+const question = (): JSX.Element => {
+  return (
+    <div>
+      <Typography variant="h4" gutterBottom>
+        Question Four
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        Kobayashi Maru
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        You are going to see a list of fruits. Sorting button should sort them
+        by descending or ascending alphabetical order. As with all the questions
+        in this tech test, you may or may not wish to refactor some of the code.
+        :P Good luck :)
+      </Typography>
+      <CardMedia
+        image={kobayashiMaru}
+        style={{
+          width: "100%",
+          height: 500,
+          backgroundSize: "contain",
+        }}
+        title="The Solution"
+      />
+    </div>
+  );
 };
 
-export default 	question
+export default question;
